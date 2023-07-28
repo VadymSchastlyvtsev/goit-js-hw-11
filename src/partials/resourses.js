@@ -3,8 +3,8 @@ const resourses = {
     form: document.querySelector('#search-form'),
     gallery: document.querySelector('.gallery'),
     submit_btn: document.querySelector('.submit'),
-    load_more: document.querySelector('.load-more'),
-    input: document.querySelector('input')
+    load_more: document.querySelector('.js-more'),
+
 };
 
 export {resourses}

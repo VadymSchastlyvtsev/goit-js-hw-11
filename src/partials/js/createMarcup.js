@@ -1,4 +1,3 @@
-import { fetchImages } from "./search";
 
 function createMarcup(arr) {
     return arr
