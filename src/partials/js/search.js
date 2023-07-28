@@ -17,24 +17,27 @@ async function fetchImages(searchValue, page=1) {
         page: `${page}`,
     });
 
-    const response = await axios.get(`${BASE_URL}?${options}`);
-    console.log(response.data);
+      const response = await axios.get(`${BASE_URL}?${options}`);
+      console.log(response.data);
+   
+    
+    // console.log(response.data);
 
 
-    if (response.status === 200 && response.data.hits.length !== 0) {
-        load_more.hidden = false;
-        load_more.style.display = 'block';
-      }
-      if (response.data.hits.length === 0) {
-        load_more.style.display = 'none';
-        Notiflix.Notify.failure('Sorry, please try again.');
-      }
-      if (response.data.hits.length * page > response.data.totalHits) {
-        Notiflix.Notify.failure("We're sorry, but we can`t find results.");
-        load_more.hidden = true;
-      }
-      gallery.insertAdjacentHTML('beforeend', createMarcup(response.data.hits));
-      new SimpleLightbox('.gallery a ', { captionDelay: 250 });
+    // if (response.status === 200 && response.data.hits.length !== 0) {
+    //     load_more.hidden = false;
+    //     load_more.style.display = 'block';
+    //   }
+    //   if (response.data.hits.length === 0) {
+    //     load_more.style.display = 'none';
+    //     Notiflix.Notify.failure('Sorry, please try again.');
+    //   }
+    //   if (response.data.hits.length * page > response.data.totalHits) {
+    //     Notiflix.Notify.failure("We're sorry, but we can`t find results.");
+    //     load_more.hidden = true;
+    //   }
+    //   gallery.insertAdjacentHTML('beforeend', createMarcup(response.data.hits));
+    //   new SimpleLightbox('.gallery a ', { captionDelay: 250 });
 };
 
 export {fetchImages};
