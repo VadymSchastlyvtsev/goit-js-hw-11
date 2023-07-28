@@ -2,7 +2,7 @@ import axios from "axios";
 import Notiflix from 'notiflix';
 import "simplelightbox/dist/simple-lightbox.min.css";
 import { fetchImages } from "./partials/js/search";
-import { createMarcup } from "./partials/js/createMarcup";
+import createMarcup from "./partials/js/createMarcup"
 import simpleLightbox from "simplelightbox";
 import { resourses } from "./partials/resourses";
 
