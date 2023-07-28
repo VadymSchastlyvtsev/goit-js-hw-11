@@ -17,7 +17,7 @@ load_more.addEventListener('click', handlerBtnLoadMore);
 
 let page;
 
-const simpleLightbox = new SimpleLightbox('.gallery a', {
+const lightBox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
   captionsData: `alt`,
 });
@@ -47,7 +47,7 @@ async function handlerFormSubmit(evt) {
       load_more.style.display = 'block';
     }
     gallery.innerHTML = await createMarcup(arr.hits);
-    simpleLightbox.refresh();
+    lightBox.refresh();
   }
   
 
@@ -57,7 +57,7 @@ async function handlerBtnLoadMore() {
 
     const arr = fetchImages(searchValue, page);
     gallery.insertAdjacentElement('beforeend', await createMarcup(arr.hits));
-    simpleLightbox.refresh();
+    lightBox.refresh();
     if (page >= 13) {
       load_more.style.display = 'none';
     }
