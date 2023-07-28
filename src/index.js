@@ -17,7 +17,7 @@ load_more.addEventListener('click', handlerBtnLoadMore);
 
 let page;
 
-const lightBox = new SimpleLightbox('.gallery a', {
+const lightBox = new simpleLightbox('.gallery a', {
   captionDelay: 250,
   captionsData: `alt`,
 });

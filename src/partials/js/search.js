@@ -17,6 +17,7 @@ async function fetchImages(searchValue, page = 1) {
 
   try {
     const {data} = await axios.get(`${BASE_URL}?${options}`);
+    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
