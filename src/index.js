@@ -2,7 +2,7 @@ import axios from "axios";
 import Notiflix from 'notiflix';
 import "simplelightbox/dist/simple-lightbox.min.css";
 import { fetchImages } from "./partials/js/search";
-import createMarcup from "./partials/js/createMarcup"
+import {createMarcup} from "./partials/js/createMarcup"
 import simpleLightbox from "simplelightbox";
 import { resourses } from "./partials/resourses";
 
@@ -39,14 +39,17 @@ async function handlerFormSubmit(evt) {
 
     const searchValue = form.searchQuery.value.split(' ').join('+');
     console.log(searchValue);
-    const arr = fetchImages(searchValue);
-    if (arr.total === 0) {
+    // console.log(searchValue);
+    const array = fetchImages(searchValue);
+    console.log('1233');
+    // console.log(array);
+    if (array.total === 0) {
       Notiflix.Notify.failure("Sorry, there are no images. Please try again!")
     } 
-    if(arr.totalHits > page * 40) {
+    if(array.totalHits > page * 40) {
       load_more.style.display = 'block';
     }
-    gallery.innerHTML = await createMarcup(arr.hits);
+    gallery.innerHTML = await createMarcup(array.hits);
     lightBox.refresh();
   }
   
@@ -55,8 +58,8 @@ async function handlerBtnLoadMore() {
   const searchValue = form.searchQuery.value.split(' ').join('+');
     page += 1;
 
-    const arr = fetchImages(searchValue, page);
-    gallery.insertAdjacentElement('beforeend', await createMarcup(arr.hits));
+    const array = fetchImages(searchValue, page);
+    gallery.insertAdjacentElement('beforeend', await createMarcup(array.hits));
     lightBox.refresh();
     if (page >= 13) {
       load_more.style.display = 'none';
@@ -64,4 +67,5 @@ async function handlerBtnLoadMore() {
 
 };
 
-export {options}
+
+

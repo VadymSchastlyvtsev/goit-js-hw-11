@@ -15,13 +15,34 @@ async function fetchImages(searchValue, page = 1) {
     page: `${page}`,
   });
 
-  try {
-    const {data} = await axios.get(`${BASE_URL}?${options}`);
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+return fetch(`${BASE_URL}?${options}`)
+.then(response => {
+  console.log(response);
+  return response.json();
+})
+.then(data => {
+  
+  console.log(data.hits);
+})
+
+
+
+//     const {data} = await axios.get(`${BASE_URL}?${options}`);
+// return data;
+
+// return data;
+    // data.then(response => {
+    //   if (!response.ok) {
+    //     gallery.innerHTML = ' ';
+    //     Notiflix.Notify.failure(`Ошибка: ${response.status}`);
+    //     throw new Error(response.status);
+    //   }
+    //   console.log('object');
+    //   console.log(response);
+    //   return response.json();
+    // })
+    // return data;
+  
 }
 
 
