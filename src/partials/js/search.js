@@ -17,12 +17,12 @@ async function fetchImages(searchValue, page = 1) {
 
 return fetch(`${BASE_URL}?${options}`)
 .then(response => {
-  console.log(response);
+  // console.log(response);
   return response.json();
 })
 .then(data => {
-  
-  console.log(data.hits);
+
+ return data;
 })
 
 

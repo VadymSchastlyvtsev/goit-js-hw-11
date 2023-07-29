@@ -9,3 +9,10 @@ body {
 /* .css-btn {
 display: none;
 } */
+
+ul {
+display: flex;
+flex-wrap: wrap;
+gap: 20;
+list-style: none;
+}

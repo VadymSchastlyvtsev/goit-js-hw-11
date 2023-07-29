@@ -38,19 +38,24 @@ async function handlerFormSubmit(evt) {
     page = 1;
 
     const searchValue = form.searchQuery.value.split(' ').join('+');
-    console.log(searchValue);
+
     // console.log(searchValue);
-    const array = fetchImages(searchValue);
-    console.log('1233');
-    // console.log(array);
-    if (array.total === 0) {
-      Notiflix.Notify.failure("Sorry, there are no images. Please try again!")
-    } 
-    if(array.totalHits > page * 40) {
+    fetchImages(searchValue)
+    .then(data => {
+      if (data.total === 0) {
+        Notiflix.Notify.failure("Sorry, there are no images. Please try again!")
+      } 
+
+      gallery.innerHTML = createMarcup(data.hits);
+      lightBox.refresh();
       load_more.style.display = 'block';
-    }
-    gallery.innerHTML = await createMarcup(array.hits);
-    lightBox.refresh();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    
+   
+
   }
   
 
@@ -58,12 +63,20 @@ async function handlerBtnLoadMore() {
   const searchValue = form.searchQuery.value.split(' ').join('+');
     page += 1;
 
-    const array = fetchImages(searchValue, page);
-    gallery.insertAdjacentElement('beforeend', await createMarcup(array.hits));
-    lightBox.refresh();
-    if (page >= 13) {
-      load_more.style.display = 'none';
-    }
+    fetchImages(searchValue, page)
+    .then(data => {
+      console.log(data);
+      gallery.insertAdjacentHTML('beforeend', createMarcup(data.hits));
+      lightBox.refresh();
+      if (page >= 13) {
+        load_more.style.display = 'none';
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+ 
+    
 
 };
 
